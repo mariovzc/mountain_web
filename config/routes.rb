@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     member do
       put 'desactivate'
       put 'activate'
+      get 'payments/:payment_id', action: :get_payments
+      post 'payments'
     end
   end
 end

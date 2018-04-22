@@ -47,6 +47,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def get_payments
+    render json: {ok: "ok"}
+  end
+
+  def payments
+    render json: {ok: "ok"}
+  end
+
   private
   
   def user_params
