@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:login]
-  before_action :set_user, only: [:update]
+  before_action :set_user, only: [:update, :desactivate, :activate]
   before_action :get_users, only: [:create, :update]
 
   def index
@@ -26,6 +26,24 @@ class UsersController < ApplicationController
         @auth_token = JsonWebToken.encode({user_id: @user.id})
     else
       render json: {error: 'Invalid username / password'}, status: :unauthorized
+    end
+  end
+
+  def desactivate
+    if @user.active
+      @user.active = false
+      @user.save  
+    else
+      render json: {error: 'User is not active'}, status: :bad_request
+    end
+  end
+
+  def activate
+    unless @user.active
+      @user.active = true
+      @user.save
+    else
+      render json: {error: 'User is active'}, status: :bad_request 
     end
   end
 
