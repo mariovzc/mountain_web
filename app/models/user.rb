@@ -17,6 +17,8 @@
 class User < ApplicationRecord
   has_secure_password
   
+  #associations
+  has_many :payments
   #scopes
   #default_scope {where(active: true)}
 
