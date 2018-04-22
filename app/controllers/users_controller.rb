@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request, only: [:login, :create, :index]
+  skip_before_action :authenticate_request, only: [:login]
   def index
     @users = User.all
   end
@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
   
     if user.save
-      render json: {status: 'User created successfully'}, status: :created
+      @users = User.all
     else
       render json: { errors: user.errors.full_messages }, status: :bad_request
     end
