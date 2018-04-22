@@ -14,4 +14,8 @@ RSpec.describe PaymentType, type: :model do
   describe "validations" do
     it { should validate_presence_of(:name) }
   end
+  describe "Associations" do
+    it { should have_many(:payment_descriptions) }
+  end
+
 end

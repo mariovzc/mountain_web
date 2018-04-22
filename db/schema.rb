@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 4) do
+ActiveRecord::Schema.define(version: 5) do
+
+  create_table "payment_descriptions", force: :cascade do |t|
+    t.integer "payment_id"
+    t.integer "month"
+    t.text "comment"
+    t.boolean "paid_up"
+    t.integer "payment_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_payment_descriptions_on_payment_id"
+    t.index ["payment_type_id"], name: "index_payment_descriptions_on_payment_type_id"
+  end
 
   create_table "payment_types", force: :cascade do |t|
     t.string "name"

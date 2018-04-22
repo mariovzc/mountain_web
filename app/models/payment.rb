@@ -10,7 +10,10 @@
 #
 
 class Payment < ApplicationRecord
+  #associations
   belongs_to :user
+  has_many :payment_descriptions
 
+  #validations
   validates :user, :year, presence: true
 end

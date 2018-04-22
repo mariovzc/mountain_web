@@ -9,5 +9,8 @@
 #
 
 class PaymentType < ApplicationRecord
+  #associations
+  has_many :payment_descriptions
+  #validations
   validates :name, presence: true
 end

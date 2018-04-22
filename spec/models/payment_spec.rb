@@ -18,5 +18,6 @@ RSpec.describe Payment, type: :model do
   end
   describe "Association" do
     it { should belong_to(:user) }
+    it { should have_many(:payment_descriptions) }
   end
 end
