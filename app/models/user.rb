@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_secure_password
   
   #scopes
-  default_scope {where(active: true)}
+  #default_scope {where(active: true)}
 
   #Validations
   validates_presence_of :first_name, :email, :last_name, :document
