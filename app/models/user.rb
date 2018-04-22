@@ -14,9 +14,18 @@
 #
 
 class User < ApplicationRecord
-
+  has_secure_password
+  
+  #Validations
   validates_presence_of :first_name, :email, :last_name, :document
-
   validates_uniqueness_of :email, case_sensitive: false
   validates_format_of :email, with: /@/
+
+  #callbacks
+  before_save :downcase_email
+
+  private
+  def downcase_email
+    self.email = self.email.delete(' ').downcase
+  end
 end
