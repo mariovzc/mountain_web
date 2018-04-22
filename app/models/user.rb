@@ -16,16 +16,20 @@
 class User < ApplicationRecord
   has_secure_password
   
+  #scopes
+  default_scope {where(active: true)}
+
   #Validations
   validates_presence_of :first_name, :email, :last_name, :document
   validates_uniqueness_of :email, case_sensitive: false
   validates_format_of :email, with: /@/
 
   #callbacks
-  before_save :downcase_email
+  before_save :setup_user
 
   private
-  def downcase_email
+  def setup_user
     self.email = self.email.delete(' ').downcase
+    self.active |= true
   end
 end
